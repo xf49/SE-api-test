@@ -11,7 +11,6 @@ public class CommonData {
 		public final String deviceId="3056690291431818481";
 		public final String variantId="3009327969108066894";
 		
-		
 	
 
 }
