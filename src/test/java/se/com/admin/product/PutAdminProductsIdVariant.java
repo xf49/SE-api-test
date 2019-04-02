@@ -3,13 +3,16 @@ package se.com.admin.product;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
+import io.restassured.RestAssured.*;
+import io.restassured.matcher.RestAssuredMatchers.*;
+import org.hamcrest.Matchers.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import se.com.common.CommonData;
 import se.com.common.GetToken;
 
-public class PostAdminProducts {
+public class PutAdminProductsIdVariant {
 
 	@Test
 	public void test() {
@@ -23,6 +26,7 @@ public class PostAdminProducts {
 		
 		request.header("Content-Type", "application/json");
 		request.header("wm-commerce-token",gt.tokenAdmin());
+		
 		
 		Response response = request.body("{\r\n" + 
 				"    \"costPriceCent\": 10,\r\n" + 
@@ -96,9 +100,11 @@ public class PostAdminProducts {
 				"    \"optionIdList\": []\r\n" + 
 				"}").
 				contentType("application/json").
-				post("/admin/products");
+				put("/admin/products/3057091991161171790/variants");
 		
 		response.then().body("code", Matchers.is("1"));
+		response.then().body("data.id",Matchers.is("3057091991161171790"));
+		
 		
 		
 	}

@@ -9,8 +9,8 @@ import io.restassured.specification.RequestSpecification;
 import se.com.common.CommonData;
 import se.com.common.GetToken;
 
-public class PostAdminProducts {
-
+public class PutAdminProducts {
+	
 	@Test
 	public void test() {
 		
@@ -96,11 +96,13 @@ public class PostAdminProducts {
 				"    \"optionIdList\": []\r\n" + 
 				"}").
 				contentType("application/json").
-				post("/admin/products");
+				put("/admin/products/3057091991161171790");
 		
 		response.then().body("code", Matchers.is("1"));
+		response.then().body("data.id",Matchers.is("3057091991161171790"));
+		//response.then().body("data.variantList.stockType", Matchers.is("[Spots]"));
 		
 		
 	}
-	
+
 }
